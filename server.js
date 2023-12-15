@@ -1,6 +1,8 @@
 const express = require('express');
+const { portMain } = require('./constants/config');
+const repairers = require('./routes/repairers.route');
+
 const app = express();
-const port = 16016;
 
 app.use(express.json());
 app.use(express.urlencoded({
@@ -11,6 +13,8 @@ app.get('/checking', (req, res) => {
     res.json({"message": "Welcome To API Users repairers!"})
 });
 
-app.listen(port, () => {
-    console.log(`The app listening at http://localhost:${port}`);
+app.use('/repairers', repairers);
+
+app.listen(portMain, () => {
+    console.log(`The app listening at http://localhost:${portMain}`);
 });
